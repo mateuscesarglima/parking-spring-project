@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,9 +18,10 @@ public class CarModel {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
-
-  @Column(nullable = false, length = 130)
-  private String responsibleName;
+  
+  @OneToOne
+  @MapsId
+  private UserModel userModel;
 
   @Column(nullable = false, unique = true, length = 7)
   private String licensePlateCar;
@@ -35,9 +38,8 @@ public class CarModel {
   public CarModel() {
   }
 
-  public CarModel(String responsibleName, String licensePlateCar, String brandCar, String modelCar,
-      String colorCar) {
-    this.responsibleName = responsibleName;
+  public CarModel(UserModel userModel, String licensePlateCar, String brandCar, String modelCar, String colorCar) {
+    this.userModel = userModel;
     this.licensePlateCar = licensePlateCar;
     this.brandCar = brandCar;
     this.modelCar = modelCar;
@@ -58,14 +60,6 @@ public class CarModel {
 
   public void setLicensePlateCar(String licensePlateCar) {
     this.licensePlateCar = licensePlateCar;
-  }
-
-  public String getResponsibleName() {
-    return responsibleName;
-  }
-
-  public void setResponsibleName(String responsibleName) {
-    this.responsibleName = responsibleName;
   }
 
   public String getBrandCar() {
@@ -91,5 +85,15 @@ public class CarModel {
   public void setColorCar(String colorCar) {
     this.colorCar = colorCar;
   }
+
+  public UserModel getUserModel() {
+    return userModel;
+  }
+
+  public void setUserModel(UserModel userModel) {
+    this.userModel = userModel;
+  }
+
+  
 
 }

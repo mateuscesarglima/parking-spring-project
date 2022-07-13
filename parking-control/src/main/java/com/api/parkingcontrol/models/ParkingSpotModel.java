@@ -27,7 +27,7 @@ public class ParkingSpotModel implements Serializable {
     private String block;
 
     @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "car_model_id")
+    @JoinColumn(name = "car_id")
     private CarModel carModel;
 
     public ParkingSpotModel() {
