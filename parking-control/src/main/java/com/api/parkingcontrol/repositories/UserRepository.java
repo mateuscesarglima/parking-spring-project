@@ -8,4 +8,6 @@ import com.api.parkingcontrol.models.UserModel;
 
 public interface UserRepository extends JpaRepository<UserModel, UUID> {
   
+  boolean existsByName(String name);
+
 }
