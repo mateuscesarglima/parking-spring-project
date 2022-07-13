@@ -18,4 +18,8 @@ public class AddressServices {
     return addressRepository.findAll();
   }
 
+  public Object save(AddressModel addressModel) {
+    return addressRepository.save(addressModel);
+  }
+
 }

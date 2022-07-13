@@ -3,14 +3,13 @@ package com.api.parkingcontrol.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.api.parkingcontrol.models.UserModel;
+
 public class CarDto {
 
   @NotBlank
   @Size(max = 7)
   private String licensePlateCar;
-
-  @NotBlank
-  private String responsibleName;
 
   @NotBlank
   private String brandCar;
@@ -20,6 +19,8 @@ public class CarDto {
 
   @NotBlank
   private String colorCar;
+
+  private UserModel userModel;
 
   public String getLicensePlateCar() {
     return licensePlateCar;
@@ -53,12 +54,12 @@ public class CarDto {
     this.colorCar = colorCar;
   }
 
-  public String getResponsibleName() {
-    return responsibleName;
+  public UserModel getUserModel() {
+    return userModel;
   }
 
-  public void setResponsibleName(String responsibleName) {
-    this.responsibleName = responsibleName;
+  public void setUserModel(UserModel userModel) {
+    this.userModel = userModel;
   }
 
 
