@@ -2,7 +2,7 @@ package com.api.parkingcontrol.models;
 
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,19 +19,38 @@ public class AddressModel {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
+  @Column(nullable = false, length = 30)
   private String streetName;
 
+  @Column(nullable = false, length = 30)
   private String houseNumber;
 
+  @Column(nullable = false, length = 30)
   private String city;
 
+  @Column(nullable = false, length = 30)
   private String zipCode;
 
+  @Column(nullable = false, length = 30)
   private String country;
-
-  @OneToOne(cascade = CascadeType.ALL)
+  
+  @OneToOne
   @JoinColumn(name = "userModel_id", referencedColumnName = "id")
   private UserModel userModel;
+
+  public AddressModel(){
+
+  }
+
+  public AddressModel(String streetName, String houseNumber, String city, String zipCode, String country,
+      UserModel userModel) {
+    this.streetName = streetName;
+    this.houseNumber = houseNumber;
+    this.city = city;
+    this.zipCode = zipCode;
+    this.country = country;
+    this.userModel = userModel;
+  }
 
   public UUID getId() {
     return id;

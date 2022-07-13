@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,7 +20,7 @@ public class CarModel {
   private UUID id;
   
   @OneToOne
-  @MapsId
+  @JoinColumn(name = "userModel_id", referencedColumnName = "id")
   private UserModel userModel;
 
   @Column(nullable = false, unique = true, length = 7)

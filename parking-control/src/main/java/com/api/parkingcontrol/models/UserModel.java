@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_user")
 public class UserModel {
@@ -24,14 +26,21 @@ public class UserModel {
 
   @Column(nullable = false, unique = true, length = 12)
   private String phoneNumber;
-
+  
+  @JsonIgnore
   @OneToOne(mappedBy = "userModel", cascade = CascadeType.ALL)
   private CarModel carModel;
 
+  @JsonIgnore
   @OneToOne(mappedBy = "userModel", cascade = CascadeType.ALL)
   private AddressModel addressModel;
 
   public UserModel() {
+  }
+
+  public UserModel(String name, String phoneNumber) {
+    this.name = name;
+    this.phoneNumber = phoneNumber;
   }
 
   public UUID getId() {
@@ -50,5 +59,30 @@ public class UserModel {
     this.name = name;
   }
 
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  public CarModel getCarModel() {
+    return carModel;
+  }
+
+  public void setCarModel(CarModel carModel) {
+    this.carModel = carModel;
+  }
+
+  public AddressModel getAddressModel() {
+    return addressModel;
+  }
+
+  public void setAddressModel(AddressModel addressModel) {
+    this.addressModel = addressModel;
+  }
+
+  
 
 }
